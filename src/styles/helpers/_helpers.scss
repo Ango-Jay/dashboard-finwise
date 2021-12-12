@@ -1,0 +1,90 @@
+/*helpers*/
+.theme-color {
+  background-color: #252525;
+}
+div.orange-color {
+  background-color: #cc3507;
+}
+.red-color {
+  color: #f03c3c;
+}
+.disp-inline {
+  display: inline;
+}
+.disp-flex {
+  display: flex;
+}
+.disp-block {
+  display: block;
+}
+.flex-dir-col {
+  flex-direction: column;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.align-items-center{
+  align-items: center;
+}
+.justify-space-between {
+  justify-content: space-between;
+}
+.p-1 {
+  padding: 1rem;
+}
+.ml-half {
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0.5rem;
+  margin-top: 0;
+}
+.mr-half {
+  margin-right: 0.5rem;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-top: 0;
+}
+.m-none {
+  margin: 0;
+}
+.m-half {
+  margin: 0.5rem;
+}
+.m-2 {
+  margin: 2rem;
+}
+.mr-2 {
+  margin-right: 2rem;
+}
+.mr-3{
+  margin-right: 3rem;
+}
+.mt-1 {
+  margin-top: 1rem;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.mt-3 {
+  margin-top: 3rem;
+}
+.mb-2{
+  margin-bottom: 2rem;
+}
+.mb-4 {
+  margin-bottom: 4rem;
+}
+.ml-auto {
+  margin-left: auto;
+}
+.ml-2 {
+  margin-left: 2rem;
+}
+
+.font-600 {
+  font-weight: 600;
+}
+.font-700 {
+  font-weight: 700;
+  font-size: 16px;
+}
