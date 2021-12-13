@@ -25,9 +25,9 @@
  }
  // Table Portrait
  @if $breakpoint == tab-port {
-   @media (min-width: /*56.25em*/62em) {
+   @media (min-width: 62.5em) {
      @content;
-   } //900px
+   } //1000px
  }
  // Table Landscape
  @if $breakpoint == tab-land {
