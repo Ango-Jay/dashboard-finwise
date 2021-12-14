@@ -11,7 +11,7 @@
             <div class="disp-flex align-items-center">
               <img
                 v-lazyload
-                src="/img/profile.jpg"
+                data-img-url="/img/profile.jpg"
                 class="dashboard-profile-img disp-flex"
                 alt="profile"
               />
@@ -36,7 +36,7 @@
         <div class="disp-flex p-1">
           <img
             v-lazyload
-            src="/img/profile.jpg"
+            data-img-url="/img/profile.jpg"
             class="dashboard-profile-img"
             alt="profile"
           />
