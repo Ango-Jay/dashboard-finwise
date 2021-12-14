@@ -8,7 +8,8 @@
           <h4 class="disp-flex"><i class="material-icons">add</i></h4>
         </div>
         <img
-          src="../assets/card_ppc-voyage-bronze.png"
+          v-lazyload
+          data-img-url="/img/card_ppc-voyage-bronze.png"
           class="dashboard-card-img"
           alt="atm card"
         />
@@ -43,7 +44,8 @@
           <h4 class="disp-flex"><i class="material-icons">add</i></h4>
         </div>
         <img
-          src="../assets/graph.png"
+          v-lazyload
+          data-img-url="/img/graph.png"
           class="dashboard-graph-img"
           alt="graph"
         />
@@ -56,7 +58,8 @@
           <h4 class="disp-flex"><i class="material-icons">add</i></h4>
         </div>
         <img
-          src="../assets/graph.png"
+          v-lazyload
+          data-img-url="/img/graph.png"
           class="dashboard-graph-img"
           alt="graph"
         />
@@ -104,7 +107,8 @@
           <div class="dashboard-content-flex-container">
             <div class="disp-flex">
               <img
-                src="../assets/profile.jpg"
+                v-lazyload
+                data-img-url="/img/profile.jpg"
                 class="dashboard-profile-img"
                 alt="profile"
               />

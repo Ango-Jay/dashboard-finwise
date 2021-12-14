@@ -1,4 +1,5 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import ImgLazyLoad from "./directives/lazyLoadImg";
 
-createApp(App).mount("#app");
+createApp(App).directive("lazyload", ImgLazyLoad).mount("#app");

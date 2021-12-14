@@ -6,40 +6,37 @@
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"
           ><i class="material-icons">menu</i></a
         >
-        <ul
-          class="left show-on-medium-and-up  hide-on-small-and-down"
-        >
+        <ul class="left show-on-medium-and-up hide-on-small-and-down">
           <li class="ml-2">
             <div class="disp-flex align-items-center">
               <img
-                src="../assets/profile.jpg"
+                v-lazyload
+                src="/img/profile.jpg"
                 class="dashboard-profile-img disp-flex"
                 alt="profile"
               />
               <p class="disp-flex m-none">Ango Grey</p>
-              <i
-              style="color: #cc3507;"
-              class="material-icons disp-flex ml-2"
-              >notifications</i
-            >
+              <i style="color: #cc3507" class="material-icons disp-flex ml-2"
+                >notifications</i
+              >
             </div>
           </li>
         </ul>
-        
       </div>
     </nav>
 
     <ul class="sidenav dashboard-sidenav" id="mobile-demo">
-      <li> <div
-          class="mt-3"
-        >
+      <li>
+        <div class="mt-3">
           <h4 class="center-align">FinWise</h4>
-        </div></li>
-     
+        </div>
+      </li>
+
       <li class="hide-on-med-and-up show-on-small">
         <div class="disp-flex p-1">
           <img
-            src="../assets/profile.jpg"
+            v-lazyload
+            src="/img/profile.jpg"
             class="dashboard-profile-img"
             alt="profile"
           />
@@ -53,8 +50,8 @@
           </div>
         </div>
       </li>
-   
-        <li>
+
+      <li>
         <form class="dashboard-search">
           <div class="input-field">
             <input id="search" type="search" placeholder="Search" required />
