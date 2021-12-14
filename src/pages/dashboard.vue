@@ -37,7 +37,7 @@
           button-style="color: green"
         />
       </div>
-      <div class="dashboard-border">
+      <div class="dashboard-border hide-on-med-and-down">
         <div class="dashboard-title-flex-container">
           <h4 class="disp-flex">Report</h4>
           <h4 class="disp-flex"><i class="material-icons">add</i></h4>
@@ -50,6 +50,17 @@
       </div>
     </div>
     <div class="dashboard-special">
+      <div class="dashboard-border hide-on-large-only">
+        <div class="dashboard-title-flex-container">
+          <h4 class="disp-flex">Report</h4>
+          <h4 class="disp-flex"><i class="material-icons">add</i></h4>
+        </div>
+        <img
+          src="../assets/graph.png"
+          class="dashboard-graph-img"
+          alt="graph"
+        />
+      </div>
       <div class="dashboard-border">
         <div class="dashboard-title-flex-container">
           <h4 class="disp-flex">Budget</h4>

@@ -41,15 +41,12 @@ li a:hover {
 .dashboard-border-flex-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 flex-wrap: wrap;
-padding:0 2rem;
- /* @include respond(tab-port-sm){
-    align-items: flex-start;
+  @include respond(tab-port){
+    align-items: center;
     justify-content: center;
-    flex-direction: row;
-  }*/
+  
+  }
 }
 .dashboard-title-flex-container {
   display: flex;
@@ -70,11 +67,24 @@ div.dashboard-border {
   color: #fff;
 padding: 0rem 1rem 1rem 1rem;
   margin: 1rem;
- 
+ width: 300px;
+ @include respond(tab-port){
+width: auto;
+   }
+   @include respond(tab-land){
+    width: 400px;
+       }
+       @include respond(big-desktop){
+        width: 500px;
+           }
 }
 .dashboard-card-img {
   height: auto;
+  width: 200px;
   padding: 1rem;
+  @include respond(tab-port){
+    width: auto;
+       }
 }
 .dashboard-profile-img {
   width: 70px;
@@ -104,15 +114,20 @@ div.dashboard-loader-progress {
   border-radius: 50%;
   border-color: #cc3507;
  background-color: #505050;
-  width: 80px !important;
-  height: 80px;
+  width: 100px !important;
+  height: 100px;
   margin: 1rem;
 }
 .dashboard-special{
   display:flex;
-  flex-direction: column;
+  flex-direction:row;
+  flex-basis: 50%;
+  flex-wrap: wrap;
+  justify-content: center;
   @include respond(tab-port){
-    flex-direction:row;
+    flex-wrap:nowrap;
+     justify-content: flex-start;
+     flex-grow: 2;
      }
 }
 /*
@@ -131,20 +146,22 @@ div.dashboard-loader-progress {
   }
 }*/
 .dashboard-special-2{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
 @include respond(tab-port){
-   display:flex;
  flex-direction:column;
  justify-content: space-between;
-  }
-   @include respond(tab-land){ 
-   display:flex;
  flex-direction:column;
-  flex-wrap:nowrap;
+ flex-wrap:nowrap;
   }
 }
 .dashboard-special-2 div{
-  flex-grow: 1;
-  flex-basis: 50%;
+  @include respond(tab-port){
+    flex-basis: 50%;  
+    flex-grow: 1;
+  }
+
 }
 footer.dashboard-page-footer {
   background-color: #505050;
