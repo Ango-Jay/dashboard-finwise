@@ -136,13 +136,13 @@
       <div class="dashboard-special-2">
         <div class="dashboard-border">
           <div class="dashboard-title-flex-container">
-            <h4 class="disp-flex">Savings</h4>
-            <h4 class="disp-flex"><i class="material-icons">add</i></h4>
+            <h4>Savings</h4>
+            <h4><i class="material-icons">add</i></h4>
           </div>
           <div class="disp-flex">
             <div>
               <div class="dashboard-circular-loader">
-                <p class="center-align font-700">100%</p>
+                <p class="font-700">100%</p>
               </div>
             </div>
 

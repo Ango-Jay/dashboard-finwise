@@ -80,11 +80,9 @@ width: auto;
 }
 .dashboard-card-img {
   height: auto;
-  width: 200px;
+  width: auto;
   padding: 1rem;
-  @include respond(tab-port){
-    width: auto;
-       }
+  
 }
 .dashboard-profile-img {
   width: 70px;
@@ -117,6 +115,9 @@ div.dashboard-loader-progress {
   width: 100px !important;
   height: 100px;
   margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .dashboard-special{
   display:flex;
@@ -130,21 +131,7 @@ div.dashboard-loader-progress {
      flex-grow: 2;
      }
 }
-/*
-.dashboard-special{
-@include respond(tab-port){
 
- flex-direction:row;
- flex-wrap:wrap;
-  
-  }
- @include respond(tab-land){
-
- flex-direction:row;
- flex-wrap:nowrap;
- 
-  }
-}*/
 .dashboard-special-2{
   display:flex;
   flex-wrap: wrap;
