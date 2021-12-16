@@ -1,16 +1,12 @@
 <template> 
-  <DashBoard  />
+  <router-view />
 </template>
 
 <script>
 import "./styles/main.scss";
 import "materialize-css/dist/css/materialize.min.css";
-import DashBoardVue from "./pages/dashboard.vue";
 export default {
-  name: "App",
-  components: {
-    DashBoard: DashBoardVue,
-  },
+  name: "App"
 };
 </script>
 
