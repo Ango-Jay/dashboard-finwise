@@ -8,14 +8,14 @@
         >
         <ul class="left show-on-medium-and-up hide-on-small-and-down">
           <li class="ml-2">
-            <div class="disp-flex align-items-center">
+            <div v-if="userLoggedIn" class="disp-flex align-items-center">
               <img
                 v-lazyload
                 data-img-url="/img/profile.jpg"
                 class="dashboard-profile-img disp-flex"
                 alt="profile"
               />
-              <p class="disp-flex m-none">Ango Grey</p>
+              <p  class="disp-flex m-none">{{userName}}</p>
               <i style="color: #cc3507" class="material-icons disp-flex ml-2"
                 >notifications</i
               >
@@ -25,7 +25,8 @@
       </div>
     </nav>
 
-    <ul class="sidenav dashboard-sidenav" id="mobile-demo">
+
+    <ul v-if="userLoggedIn" class="sidenav dashboard-sidenav" id="mobile-demo">
       <li>
         <div class="mt-3">
           <h4 class="center-align">FinWise</h4>
@@ -41,7 +42,7 @@
             alt="profile"
           />
           <div class="disp-flex justify-space-between">
-            <p class="disp-flex">Ango Grey</p>
+            <p class="disp-flex">{{userName}}</p>
             <i
               style="color: #cc3507; padding-left: 2rem; padding-top: 1.7rem"
               class="material-icons disp-flex"
@@ -114,19 +115,57 @@
         <a href="sass.html"><i class="material-icons">settings</i> Settings</a>
       </li>
     </ul>
+    <ul v-else class="sidenav dashboard-sidenav" id="mobile-demo">
+      <li>
+        <div class="mt-3">
+          <h4 class="center-align">FinWise</h4>
+        </div>
+      </li>
+       <li>
+        <a href="sass.html"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a href="sass.html">About</a>
+      </li>
+      <li>
+        <a href="sass.html">Contact</a>
+      </li>
+    </ul>
   </div>
 </template>
 <script>
 import M from "materialize-css";
+import {mapState} from "vuex"
+
 export default {
   name: "NavBar",
+  data(){
+    return{
+      userName: window.localStorage.getItem("userName")
+    }
+  },
   mounted() {
-    M.AutoInit();
-    //document.addEventListener("DOMContentLoaded", function () {
-    //  const elems = document.querySelectorAll(".sidenav");
-    //  const instances = M.Sidenav.init(elems, options);
-    //}
-    //   );
+   document.addEventListener("DOMContentLoaded", function () {
+    const elems = document.querySelectorAll(".sidenav");
+     const instances = M.Sidenav.init(elems);
+     return instances;
+    }
+    );
+  },
+  computed:{
+  ...mapState([
+"userEmail"
+  ]),
+userLoggedIn(){
+  if(window.localStorage.getItem("email") && window.localStorage.getItem("userName")){
+  return true
+  }
+  else{
+   return false
+  }
+}
   }
 };
 </script>
