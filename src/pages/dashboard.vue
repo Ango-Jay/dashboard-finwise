@@ -294,12 +294,12 @@ export default {
     }
   },
   mounted(){
-     document.addEventListener('DOMContentLoaded', function() {
+   //  document.addEventListener('DOMContentLoaded', function() {
  const elemM= document.querySelector('.modal');
  const instancesModal = M.Modal.init(elemM);
 
     return  instancesModal;
-  });
+ // });
  
 
   },
