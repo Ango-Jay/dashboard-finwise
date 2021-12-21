@@ -5,16 +5,25 @@
       <div class="dashboard-border">
         <div class="dashboard-title-flex-container">
           <h4 class="disp-flex">Cards</h4>
-            <a  href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
+            <a @click="modalAction = 'Card'"  href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
         </div>
-      <Card />
+        <div v-for="card in Cards" :key="card.id">
+     <Card 
+      :cardType="card.type"
+      :cardName="card.name"
+      />
+        </div>
+ 
       </div>
       <div class="dashboard-border">
         <div class="dashboard-title-flex-container">
           <h4>All Trasactions</h4>
         <a @click="modalAction = 'Transaction'" href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
         </div>
-        <div v-for="transaction in Transactions" :key="transaction.id">
+        <div v-if="Transactions == 0">
+            <p>Add new Transaction </p>
+          </div>
+        <div v-else v-for="transaction in Transactions" :key="transaction.id">
         <Transaction 
           :userName="transaction.name"
           :userTransactAmount="transaction.amount"
@@ -25,25 +34,28 @@
    <div class="dashboard-border hide-on-med-and-down">
         <div class="dashboard-title-flex-container">
           <h4 class="disp-flex">Report</h4>
-            <a  href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
+
         </div>
-      <Chart />
+   <div v-if="!Chart">
+            <p>Start your financial journey </p>
+          </div>
+      <Chart 
+      :chartData="Chart"
+      />
       </div>
       </div>
 
-    
-         <div class="dashboard-special">
+             <div class="dashboard-special">
       <div class="dashboard-border hide-on-large-only">
         <div class="dashboard-title-flex-container">
           <h4 class="disp-flex">Report</h4>
-  <a href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
         </div>
-        <img
-          v-lazyload
-          data-img-url="/img/graph.png"
-          class="dashboard-graph-img"
-          alt="graph"
-        />
+   <div v-if="!Chart">
+            <p>Start your financial journey </p>
+          </div>     
+  <Chart
+  :chartData="Chart"
+   />
       </div>
       <div class="dashboard-border">
         <div class="dashboard-title-flex-container">
@@ -52,7 +64,10 @@
              modalAction = 'Budget';
              }" href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
         </div>
-        <div v-for="budget in Budgets" :key="budget.id">
+        <div v-if="Budgets.length == 0">
+            <p>Add new Budget plan </p>
+          </div>
+        <div v-else v-for="budget in Budgets" :key="budget.id">
         <Budgets 
         :totalCash="budget.totalCash"
         :budgetName="budget.name"
@@ -66,7 +81,10 @@
             <h4>Suscriptions</h4>
              <a @click="modalAction = 'Subscription'"  href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
           </div>
-            <div v-for="subscription in Subscriptions" :key="subscription.id">
+          <div v-if="Subscriptions.length == 0">
+            <p>Add new Subscription </p>
+          </div>
+            <div v-else v-for="subscription in Subscriptions" :key="subscription.id">
           <Suscriptions
             :suscriptionName="subscription.name"
             :suscriptionDate="'Due ' + subscription.date"
@@ -78,7 +96,10 @@
             <h4 class="disp-flex">Loans</h4>
               <a @click="modalAction = 'Loan'" href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
           </div>
-          <div v-for="loan in Loans" :key="loan.id">
+          <div v-if="Loans.length == 0">
+            <p>Add new Loan</p>
+          </div>
+          <div v-else v-for="loan in Loans" :key="loan.id">
       <Loans 
       :loanName="loan.name"
       :dateTaken="loan.date"
@@ -92,15 +113,27 @@
             <h4>Savings</h4>
           <a  href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
           </div>
-         <Savings />
+          <div v-if="Savings.length == 0">
+            <p>
+            Start saving</p>
+            </div>
+          <div v-else v-for="saving in Savings" :key="saving.id">
+ <Savings />
+          </div>
+        
         </div>
 
         <div class="dashboard-border">
           <div class="dashboard-title-flex-container">
             <h4 class="disp-flex">Financial Advice</h4>
-              <a  href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
+              <a @click="()=>{modalAction = 'Quote';
+                initSelect()}"  href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
           </div>
-          <Quotes />
+          <div v-if="Quotes.length == 0">
+            <p>Add new quote</p>
+          </div>
+          <div v-else v-for="quote in Quotes" :key="quote.id"> 
+          <Quotes /></div>
         </div>
       </div>
     </div>
@@ -108,7 +141,33 @@
  
    <!-- Modal Structure -->
   <div id="modal1" class="modal">
-    <div v-if="modalAction === 'Transaction'" style="color:#252525" class="modal-content">
+     <div v-if="modalAction === 'Card'" style="color:#252525" class="modal-content">
+      <h4>Add New Card</h4>
+      <form style="color:#252525" @submit.prevent="submitModalContent">
+          <div class="input-field">
+            <input id="cname" type="text"  v-model="modalContentName" />
+            <label  for="cname">Card Name</label>
+          </div>
+          <div class="input-field">
+            <input id="cnum" type="text"  v-model="cardAccountNumber" />
+            <label  for="cnum">Card Number</label>
+          </div>
+           <div class="input-field">
+            <select v-model="modalContentType">
+              <option value="" disabled selected>Choose card type</option>
+              <option  value="MasterCard">MasterCard</option>
+              <option value="Visa">Visa</option>
+            </select>
+            <label>Card Type</label>
+          </div>
+             <div class="input-field">
+            <input id="cardDate" type="date"  v-model="modalContentDate" />
+            <label  for="cardDate">Exp. Date</label>
+          </div>
+           <div class="center-align" ><button type="submit" class="waves-effect waves-light btn login-button">Create</button></div>
+      </form>
+    </div>
+    <div v-else-if="modalAction === 'Transaction'" style="color:#252525" class="modal-content">
       <h4>Create New Transaction</h4>
       <form style="color:#252525" @submit.prevent="submitModalContent">
           <div class="input-field">
@@ -160,7 +219,7 @@
             <label  for="budgetTotalCash">Total Amount</label>
           </div>
              <div class="input-field">
-            <select v-model="budgetType">
+            <select v-model="modalContentType">
               <option value="" disabled selected>Choose budget type</option>
               <option  value="Automated">Automated</option>
               <option value="Manual">Manual</option>
@@ -185,6 +244,36 @@
             <input id="loanDate" type="date" v-model="modalContentDate" />
             <label  for="loanDate">Due Date</label>
           </div>
+           <div class="center-align" ><button type="submit" class="waves-effect waves-light btn login-button">Create</button></div>
+      </form>
+      </div>
+        <div v-else-if="modalAction === 'Quote'" style="color:#252525" class="modal-content">
+      <h4>Add new quote</h4>
+ <form style="color:#252525" @submit.prevent="submitModalContent">
+          <p>
+      <label>
+        <input name="group1" type="radio" class="hgi" value="Try dey rest small, na who dey alive dey enjoy money" />
+        <span>Try dey rest small, na who dey alive dey enjoy money</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input name="group1" type="radio" />
+        <span>Money stops nonsense !</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="group1" type="radio"  />
+        <span>Work hard so you can play hard tomorrow !</span>
+      </label>
+    </p>
+    <p class="center-align">OR</p>
+  <p class="center-align">Create custom quote</p>
+  <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Textarea</label>
+        </div>
            <div class="center-align" ><button type="submit" class="waves-effect waves-light btn login-button">Create</button></div>
       </form>
       </div>
@@ -228,24 +317,24 @@ export default {
      modalContentAmount:null,
      modalContentDate:"",
        budgetTotalAmount:null,
-     budgetType:"",
+     modalContentType:"",
+     cardAccountNumber:null
     
     }
   },
   computed: {...mapState([
-"userEmail","Transactions","Subscriptions", "Budgets","Loans"
+"userEmail","Transactions","Subscriptions", "Budgets","Loans","Cards","Chart","Quotes","Savings"
   ]),
 
   },
   methods:{
     ...mapActions([
-      "addTransaction", "addSubscription","addLoan","addBudget"
+      "addCard","addTransaction", "addSubscription","addLoan","addBudget"
     ]),
     initSelect(){
     const elemS=  document.querySelector('select');
     const instancesSelect =  M.FormSelect.init(elemS);
-     console.log(elemS);
-
+   
     return  instancesSelect;
 
   },
@@ -274,9 +363,31 @@ export default {
         name: this.modalContentName,
         amount: this.modalContentAmount,
         totalCash:this.budgetTotalAmount,
-        type:this.budgetType
+        type:this.modalContentType
       }
         this.addBudget(budgetModalContent)
+    this.closeModal()
+    }
+      else if(this.modalAction == "Card"){
+      let cardModalContent = {
+         id: 0,
+        name: this.modalContentName,
+        amount: this.modalContentAmount,
+        totalCash:this.cardAccountNumber,
+        type:this.modalContentType
+      }
+        this.addCard(cardModalContent)
+    this.closeModal()
+    }
+       else if(this.modalAction == "Quotes"){
+      let cardModalContent = {
+         id: 0,
+        name: this.modalContentName,
+        amount: this.modalContentAmount,
+        totalCash:this.cardAccountNumber,
+        type:this.modalContentType
+      }
+        this.addCard(cardModalContent)
     this.closeModal()
     }
   },
@@ -294,19 +405,18 @@ export default {
     }
   },
   mounted(){
-   //  document.addEventListener('DOMContentLoaded', function() {
+   
  const elemM= document.querySelector('.modal');
  const instancesModal = M.Modal.init(elemM);
 
     return  instancesModal;
- // });
- 
-
   },
   updated(){
-    if(this.modalAction == "Budget"){
-      this.initSelect()
-    }
+   // if(this.modalAction == "Budget"){
+  //    this.initSelect()
+    //}
+     const el=  document.querySelector('.hgi');
+console.log(el.value)
   }
 
 };

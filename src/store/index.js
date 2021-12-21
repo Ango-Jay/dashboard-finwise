@@ -6,6 +6,8 @@ export const store = createStore({
     userEmail:"",
     userPassword:"",
     userName:"",
+    Cards:[],
+    Chart:null,
     Transactions:[],
     Budgets:[],
     Subscriptions:[],
@@ -21,6 +23,16 @@ state.userPassword = payload.password;
 state.userName = payload.name;
 window.localStorage.setItem("email", payload.email );
 window.localStorage.setItem("userName", payload.name)
+},
+deleteUser(state){
+  state.userEmail = "";
+  state.userPassword = "";
+  state.userName = "";
+  window.localStorage.removeItem("email");
+  window.localStorage.removeItem("userName");
+  },
+addCard(state,payload){
+  state.Card.push(payload)
 },
 addTransaction(state,payload){
   state.Transactions.push(payload)
@@ -47,6 +59,13 @@ addQuote(state,payload){
       commit("setUser",payload)
       router.push("/dash")
     },
+    logOutUser({commit}){
+      commit("deleteUser")
+      router.push("/login")
+    },
+    addCard({commit}, payload){
+      commit("addCard", payload)
+    },
     addTransaction({commit}, payload){
       commit("addTransaction", payload)
     },
@@ -58,6 +77,9 @@ addQuote(state,payload){
     },
     addLoan({commit}, payload){
       commit("addLoan", payload)
+    },
+    addQuote({commit}, payload){
+      commit("addQuote", payload)
     }
   }
 });

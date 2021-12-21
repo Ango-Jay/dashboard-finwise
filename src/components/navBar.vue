@@ -21,6 +21,7 @@
               >
             </div>
           </li>
+          <li><button @click="logOutUser" class="waves-effect waves-light btn login-button">Log out</button></li>
         </ul>
       </div>
     </nav>
@@ -32,7 +33,7 @@
           <h4 class="center-align">FinWise</h4>
         </div>
       </li>
-
+<li><button @click="logOutUser" class="waves-effect waves-light btn login-button">Log out</button></li>
       <li class="hide-on-med-and-up show-on-small">
         <div class="disp-flex p-1">
           <img
@@ -137,7 +138,7 @@
 </template>
 <script>
 import M from "materialize-css";
-import {mapState} from "vuex"
+import {mapState,mapActions} from "vuex"
 
 export default {
   name: "NavBar",
@@ -147,13 +148,10 @@ export default {
     }
   },
   mounted() {
-   document.addEventListener("DOMContentLoaded", function () {
-    const elems = document.querySelectorAll(".sidenav");
+     const elems = document.querySelectorAll(".sidenav");
      const instances = M.Sidenav.init(elems);
      return instances;
-    }
-    );
-  },
+     },
   computed:{
   ...mapState([
 "userEmail"
@@ -166,6 +164,11 @@ userLoggedIn(){
    return false
   }
 }
+  },
+  methods:{
+...mapActions([
+  "logOutUser"
+])
   }
 };
 </script>
