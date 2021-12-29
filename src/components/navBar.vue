@@ -6,9 +6,9 @@
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"
           ><i class="material-icons">menu</i></a
         >
-        <ul class="left show-on-medium-and-up hide-on-small-and-down">
+        <ul v-if="userLoggedIn" class="left show-on-medium-and-up hide-on-small-and-down">
           <li class="ml-2">
-            <div v-if="userLoggedIn" class="disp-flex align-items-center">
+            <div class="disp-flex align-items-center">
               <img
                 v-lazyload
                 data-img-url="/img/profile.jpg"
