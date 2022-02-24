@@ -1,8 +1,12 @@
 <template>
-<div>
+<div  style="display:flex;justify-content:space-between;padding:0.5rem 1rem;background-color:#303030;border-radius:20px">
+  <div>
   <p>{{cardName}}</p>
+    <p style="font-size:12px;color:#cc3507;">{{cardType}}</p>
+  </div>
+
   <img
-  v-if="cardType == 'MasteCard'"
+  v-if="cardType == 'MasterCard'"
           v-lazyload
           data-img-url="/img/card_ppc-voyage-bronze.png"
           class="dashboard-card-img"

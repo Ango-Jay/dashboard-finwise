@@ -2,39 +2,69 @@
   <div>
     <nav>
       <div class="nav-wrapper dashboard-nav">
-        <a href="#!" class="brand-logo right mr-3">FinWise</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"
           ><i class="material-icons">menu</i></a
         >
-        <ul v-if="userLoggedIn" class="left show-on-medium-and-up hide-on-small-and-down">
-          <li class="ml-2">
+        <ul v-if="userLoggedIn" class="right show-on-medium-and-up hide-on-small-and-down">
+          <!-- <li class="ml-2">
             <div class="disp-flex align-items-center">
+                 <span style=" background-color:#707070; border-radius:50%; display:flex; justify-items:center; align-items:center; margin:0 1rem; padding:.25rem">       <i style="color: #cc3507; line-height:28px; height:28px; width:28px; text-align:center" class="material-icons"
+                >notifications</i
+              ></span>
               <img
                 v-lazyload
                 data-img-url="/img/profile.jpg"
                 class="dashboard-profile-img disp-flex"
                 alt="profile"
               />
-              <p  class="disp-flex m-none">{{userName}}</p>
-              <i style="color: #cc3507" class="material-icons disp-flex ml-2"
-                >notifications</i
-              >
+             
+           
+       
             </div>
-          </li>
-          <li><button @click="logOutUser" class="waves-effect waves-light btn login-button">Log out</button></li>
+          </li> -->
+          <!-- <li><button @click="logOutUser" class="waves-effect waves-light btn login-button ml-2" >Log out</button></li> -->
         </ul>
+         <div class="disp-flex align-items-center" style="height:100%">
+                <span  style="margin:0 auto 0 0; display: flex" class="hide-on-med-and-down">
+                  <img
+                v-lazyload
+                data-img-url="/img/profile.jpg"
+                class="dashboard-profile-img disp-flex"
+                alt="profile"
+               
+              />
+              <p  class="disp-flex m-none">{{userName}}</p>
+              </span>
+              <span class=" disp-flex"  style="margin:0 0 0 auto">
+                 <span style=" background-color:#707070; border-radius:50%; display:flex; justify-items:center; align-items:center; margin:0 1rem; padding:.25rem">       <i style="color: #cc3507; line-height:28px; height:28px; width:28px; text-align:center" class="material-icons"
+                >notifications</i
+              ></span>
+               <img
+                v-lazyload
+                data-img-url="/img/profile.jpg"
+                class="dashboard-profile-img disp-flex hide-on-large-only"
+                alt="profile"
+               style="margin:0 1rem 0 0"
+              />
+              </span>
+            
+              <!-- <p  class="disp-flex m-none">{{userName}}</p> -->
+           
+       
+            </div>
       </div>
     </nav>
 
 
-    <ul v-if="userLoggedIn" class="sidenav dashboard-sidenav" id="mobile-demo">
+    <ul v-if="userLoggedIn"  class="sidenav dashboard-sidenav" id="mobile-demo">
       <li>
         <div class="mt-3">
-          <h4 class="center-align">FinWise</h4>
+          <h4 class="center-align disp-flex align-items-center justify-center"><img class="dash-logo" src="/img/logo.png" alt="logo" /><span>FinWise</span></h4>
+          
         </div>
       </li>
-<li><button @click="logOutUser" class="waves-effect waves-light btn login-button">Log out</button></li>
-      <li class="hide-on-med-and-up show-on-small">
+
+      <!-- <li class="hide-on-med-and-up show-on-small">
         <div class="disp-flex p-1">
           <img
             v-lazyload
@@ -51,7 +81,7 @@
             >
           </div>
         </div>
-      </li>
+      </li> -->
 
       <li>
         <form class="dashboard-search">
@@ -72,7 +102,7 @@
           </div>
         </form>
       </li>
-      <li>
+      <li class="active-link">
         <a href="sass.html"><i class="material-icons">home</i> Home</a>
       </li>
 
@@ -115,6 +145,7 @@
       <li>
         <a href="sass.html"><i class="material-icons">settings</i> Settings</a>
       </li>
+      <li style="display:flex"><button @click="logOutUser" class="waves-effect waves-light btn login-button" style="margin:2rem auto">Log out</button></li>
     </ul>
     <ul v-else class="sidenav dashboard-sidenav" id="mobile-demo">
       <li>
@@ -133,6 +164,7 @@
       <li>
         <a href="sass.html">Contact</a>
       </li>
+      
     </ul>
   </div>
 </template>
@@ -144,7 +176,7 @@ export default {
   name: "NavBar",
   data(){
     return{
-      userName: window.localStorage.getItem("userName")
+      userName: window.sessionStorage.getItem("userName")
     }
   },
   mounted() {
@@ -157,7 +189,7 @@ export default {
 "userEmail"
   ]),
 userLoggedIn(){
-  if(window.localStorage.getItem("email") && window.localStorage.getItem("userName")){
+  if(window.sessionStorage.getItem("email") && window.sessionStorage.getItem("userName")){
   return true
   }
   else{

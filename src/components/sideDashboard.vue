@@ -1,26 +1,13 @@
 <template>
   <div class="dashboard-dashboard">
     <ul class="dashboard-sidenav">
-      <li>
-        <form class="dashboard-search">
-          <div class="input-field">
-            <input id="search" type="search" placeholder="Search" required />
-            <label class="label-icon" for="search"
-              ><i
-                style="color: #cc3507; padding-top: 0.8rem"
-                class="material-icons"
-                >search</i
-              ></label
-            >
-            <i
-              style="color: #cc3507; padding-top: 0.7rem"
-              class="material-icons"
-              >close</i
-            >
-          </div>
-        </form>
+        <li>
+   
+          <h5 class="center-align disp-flex align-items-center "><img class="dash-logo" src="/img/logo.png" alt="logo" /><span>FinWise</span></h5>
+          
+       
       </li>
-      <li>
+      <li class="active-link">
         <a href="sass.html"><i class="material-icons">home</i> Home</a>
       </li>
 
@@ -63,12 +50,19 @@
       <li>
         <a href="sass.html"><i class="material-icons">settings</i> Settings</a>
       </li>
+        <li style="display:flex"><button @click="logOutUser" class="waves-effect waves-light btn login-button" style="margin:2rem auto">Log out</button></li>
     </ul>
   </div>
 </template>
 
 <script>
+import {mapActions} from "vuex"
 export default {
-  name: "SideDashboard"
+  name: "SideDashboard",
+ methods:{
+...mapActions([
+  "logOutUser"
+])
+  }
 };
 </script>

@@ -4,11 +4,13 @@ import Login from "../pages/login";
 
 
 const isAuth = (to, from, next)=>{
-  if(window.localStorage.getItem("email") && window.localStorage.getItem("userName")){
-    next()
-  }
-  else{
-    next("/login")
+  if (
+    window.sessionStorage.getItem("email") &&
+    window.sessionStorage.getItem("userName")
+  ) {
+    next();
+  } else {
+    next("/login");
   }
 }
 

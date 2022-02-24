@@ -2,14 +2,44 @@
 @import "./helpers/helpers";
 
 /* section */
+.content-wrapper{
+  display: flex;
+  flex-direction: column;
+
+ @include respond(tab-port){
+  flex-direction: row;
+}
+}
+p{
+  font-size: 16px;
+}
 nav {
   background-color: transparent !important;
   margin-bottom: 2rem;
+  a.brand-logo{
+    align-items: center;
+      display: none;
+     @include respond(tab-port){
+       display: flex;
+     }
+  }
+ 
 }
-
+ img.dash-logo{
+    width: 32px;
+ 
+  }
 ul.dashboard-sidenav {
   background-color: #252525;
   color: #fff;
+
+  .active-link{
+    background-color: #cc3507;
+
+    i.material-icons{
+      color: #fff !important;
+    }
+  }
 }
 .sidenav.dashboard-sidenav li > a {
   color: #fff;
@@ -35,15 +65,50 @@ li a:hover {
 }
 .dashboard-dashboard{
   height: 100vh;
-  width: 30%;
+  width: 35%;
   display: none;
+  background-color: #404040;
+
+  ul.dashboard-sidenav{
+display: flex;
+flex-direction: column;
+ background-color:inherit;
+  // margin: 0 0.7rem 0 0;
+
+li{
+padding: .7rem 1rem;
+
+
+}
+ li > a {
+  color: #fff;
+  i.material-icons {
+  color: #cc3507 ;
+}
+}
+li a:hover {
+  background-color: #cc3507 !important;
+  color: #fff !important;
+  border-radius: 20px;
+}
+
+  }
+
+  @include respond(tab-port){
+     display: block;
+  }
+    @include respond(big-desktop){
+    width:20%;
+  }
 }
 .dashboard-border-flex-container {
   display: flex;
-  flex-direction: column;
+flex-direction: column;
 flex-wrap: wrap;
+align-content: flex-start;
   @include respond(tab-port){
     align-items: center;
+      flex-direction: row;
     justify-content: center;
   
   }
@@ -61,18 +126,18 @@ flex-wrap: wrap;
 div.dashboard-border {
   display: flex;
   flex-direction: column;
-  background-color: #505050;
+  background-color: #404040;
   border-radius: 20px;
   height: auto;
   color: #fff;
-padding: 0rem 1rem 1rem 1rem;
+padding: 0rem .5rem 1rem .5rem;
   margin: 1rem;
  width: 300px;
  @include respond(tab-port){
 width: 250px;
    }
    @include respond(tab-land){
-    width: 350px;
+    width: 325px;
        }
        @include respond(big-desktop){
         width: 500px;
@@ -80,17 +145,23 @@ width: 250px;
 }
 .dashboard-card-img {
   height: auto;
-  width: auto;
-  padding: 1rem;
+ width: 60%;
+ 
   
 }
 .dashboard-profile-img {
-  width: 70px;
-  height: 70px;
-  padding: 1rem;
+  width: 40px;
+  height: 40px;
+  padding: 0rem;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
+
+  @include respond(tab-port){
+      padding: 1rem;
+        width: 70px;
+  height: 70px;
+  }
 }
 .dashboard-graph-img {
   height: 220px;
@@ -177,6 +248,7 @@ a.addButton.btn-floating.btn-large{
 button.login-button{
   background-color: #cc3507;
   border-radius: 20px;
+  
 }
 .login-title{
   background-color: #252525;
@@ -187,4 +259,44 @@ button.login-button{
 }
 input.login-input{
   color: #fff;
+}
+
+// Modal
+.welcome-modal{
+  position: fixed; /* Stay in place */
+  z-index: 1001; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100vw; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+  .modal-content{
+  background-color: #252525;
+  color:#fff;
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  // justify-content: center;
+  // align-self: center;
+  margin: auto;
+  width: 90%;
+@media (min-width: 600px){
+  width: 50%;
+}
+
+  span.close-modal{
+    color: #cc3507;
+    position: absolute;
+    top: 2%;
+    right: 3.5%;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}
 }

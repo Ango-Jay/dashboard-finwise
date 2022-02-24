@@ -25,7 +25,7 @@
  }
  // Table Portrait
  @if $breakpoint == tab-port {
-   @media (min-width: 62.5em) {
+   @media (min-width: 62.063em) {
      @content;
    } //1000px
  }

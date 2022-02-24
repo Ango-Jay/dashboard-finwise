@@ -23,6 +23,9 @@ div.orange-color {
 .justify-end {
   justify-content: flex-end;
 }
+.justify-center{
+  justify-content: center;
+};
 .align-items-center{
   align-items: center;
 }
@@ -31,6 +34,9 @@ div.orange-color {
 }
 .p-1 {
   padding: 1rem;
+}
+.p-half{
+  padding: .5rem;
 }
 .ml-half {
   margin-right: 0;

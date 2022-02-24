@@ -1,11 +1,17 @@
 <template>
-  <NavBar />
+
+  <WelcomeModal/>
+  <div class="content-wrapper">
+<SideDashboard /> 
+<div>
+    <NavBar />
+
   <div class="dashboard-border-flex-container">
     <div class="dashboard-special">
       <div class="dashboard-border">
         <div class="dashboard-title-flex-container">
           <h4 class="disp-flex">Cards</h4>
-            <a @click="modalAction = 'Card'"  href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
+            <a @click="()=>{modalAction = 'Card'}"  href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
         </div>
         <div v-for="card in Cards" :key="card.id">
      <Card 
@@ -13,7 +19,9 @@
       :cardName="card.name"
       />
         </div>
- 
+  <div v-if="Cards.length === 0">
+    <p>Add a debit card</p>
+        </div>
       </div>
       <div class="dashboard-border">
         <div class="dashboard-title-flex-container">
@@ -31,31 +39,27 @@
           button-style="color: #f03c3c"
         /></div>
   </div>
-   <div class="dashboard-border hide-on-med-and-down">
+   <div v-if="onWidthChange >= 993" class="dashboard-border">
         <div class="dashboard-title-flex-container">
           <h4 class="disp-flex">Report</h4>
 
         </div>
-   <div v-if="!Chart">
+   <!-- <div v-if="!Chart">
             <p>Start your financial journey </p>
-          </div>
-      <Chart 
-      :chartData="Chart"
-      />
-      </div>
+          </div>  -->
+      <Chart  />
+      </div> 
       </div>
 
              <div class="dashboard-special">
-      <div class="dashboard-border hide-on-large-only">
+      <div v-if="onWidthChange <= 993" class="dashboard-border">
         <div class="dashboard-title-flex-container">
           <h4 class="disp-flex">Report</h4>
         </div>
-   <div v-if="!Chart">
+<!--    <div v-if="!Chart">
             <p>Start your financial journey </p>
-          </div>     
-  <Chart
-  :chartData="Chart"
-   />
+          </div>     --> 
+<Chart />
       </div>
       <div class="dashboard-border">
         <div class="dashboard-title-flex-container">
@@ -127,18 +131,19 @@
           <div class="dashboard-title-flex-container">
             <h4 class="disp-flex">Financial Advice</h4>
               <a @click="()=>{modalAction = 'Quote';
-                initSelect()}"  href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
+           }"  href="#modal1" class="addButton btn-floating btn-large waves-effect waves-light modal-trigger"><i class="material-icons">add</i></a>
           </div>
           <div v-if="Quotes.length == 0">
             <p>Add new quote</p>
           </div>
           <div v-else v-for="quote in Quotes" :key="quote.id"> 
-          <Quotes /></div>
+          <Quotes :quote=quote.value /></div>
         </div>
       </div>
     </div>
     </div>
- 
+</div>
+ </div>
    <!-- Modal Structure -->
   <div id="modal1" class="modal">
      <div v-if="modalAction === 'Card'" style="color:#252525" class="modal-content">
@@ -152,7 +157,7 @@
             <input id="cnum" type="text"  v-model="cardAccountNumber" />
             <label  for="cnum">Card Number</label>
           </div>
-           <div class="input-field">
+           <div class="input-field" style="margin:1rem 0;">
             <select v-model="modalContentType">
               <option value="" disabled selected>Choose card type</option>
               <option  value="MasterCard">MasterCard</option>
@@ -252,29 +257,29 @@
  <form style="color:#252525" @submit.prevent="submitModalContent">
           <p>
       <label>
-        <input name="group1" type="radio" class="hgi" value="Try dey rest small, na who dey alive dey enjoy money" />
+        <input v-model="quoteContent" name="group1" type="radio" class="hgi" value="Try dey rest small, na who dey alive dey enjoy money" />
         <span>Try dey rest small, na who dey alive dey enjoy money</span>
       </label>
     </p>
     <p>
       <label>
-        <input name="group1" type="radio" />
+        <input v-model="quoteContent" name="group1" type="radio" value="Money stops nonsense !"/>
         <span>Money stops nonsense !</span>
       </label>
     </p>
     <p>
       <label>
-        <input class="with-gap" name="group1" type="radio"  />
+        <input v-model="quoteContent" class="with-gap" name="group1" type="radio"  value="Work hard so you can play hard tomorrow !"/>
         <span>Work hard so you can play hard tomorrow !</span>
       </label>
     </p>
     <p class="center-align">OR</p>
   <p class="center-align">Create custom quote</p>
   <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <textarea @change="setCustomQuote($event)" id="textarea1" class="materialize-textarea"></textarea>
           <label for="textarea1">Textarea</label>
         </div>
-           <div class="center-align" ><button type="submit" class="waves-effect waves-light btn login-button">Create</button></div>
+           <div class="center-align" ><button  type="submit" class="waves-effect waves-light btn login-button">Create</button></div>
       </form>
       </div>
   </div>
@@ -293,6 +298,8 @@ import Savings from "../components/savings.vue";
 import Card from "../components/card.vue";
 import Chart from "../components/chart.vue";
 import Loans from "../components/loans.vue";
+import WelcomeModal from "../components/welcomeModal.vue";
+import SideDashboard from "../components/sideDashboard.vue";
 import {mapState, mapActions} from "vuex"
 import M from "materialize-css";
 
@@ -308,34 +315,48 @@ export default {
     Savings,
     Card,
     Chart,
-    Loans
+    Loans,
+    WelcomeModal,
+    SideDashboard
   },
   data(){
     return{
+      windowWidth: document.body.clientWidth,
      modalAction:"",
      modalContentName:"",
-     modalContentAmount:null,
+     modalContentAmount:0,
      modalContentDate:"",
-       budgetTotalAmount:null,
+       budgetTotalAmount:0,
      modalContentType:"",
-     cardAccountNumber:null
+     cardAccountNumber:"",
+     quoteContent:""
     
     }
   },
   computed: {...mapState([
-"userEmail","Transactions","Subscriptions", "Budgets","Loans","Cards","Chart","Quotes","Savings"
+"userName","userEmail","Transactions","Subscriptions", "Budgets","Loans","Cards","Chart","Quotes","Savings"
   ]),
-
+  onWidthChange(){
+      const width = this.windowWidth
+      return width
+    }
   },
   methods:{
     ...mapActions([
-      "addCard","addTransaction", "addSubscription","addLoan","addBudget"
+      "addCard","addTransaction", "addSubscription","addLoan","addBudget","addQuote"
     ]),
+  
+    setCustomQuote(e){
+this.quoteContent=e.target.value
+    },
     initSelect(){
     const elemS=  document.querySelector('select');
-    const instancesSelect =  M.FormSelect.init(elemS);
+    if(elemS){ const instancesSelect =  M.FormSelect.init(elemS);
    
-    return  instancesSelect;
+    return  instancesSelect;}
+    else{
+      return null;
+    }
 
   },
   submitModalContent(){
@@ -379,15 +400,12 @@ export default {
         this.addCard(cardModalContent)
     this.closeModal()
     }
-       else if(this.modalAction == "Quotes"){
-      let cardModalContent = {
+       else if(this.modalAction == "Quote"){
+      let quoteModalContent = {
          id: 0,
-        name: this.modalContentName,
-        amount: this.modalContentAmount,
-        totalCash:this.cardAccountNumber,
-        type:this.modalContentType
+        value:this.quoteContent,
       }
-        this.addCard(cardModalContent)
+        this.addQuote(quoteModalContent)
     this.closeModal()
     }
   },
@@ -398,6 +416,9 @@ export default {
       this.modalContentDate = ""
       this.budgetTotalAmount = null
       this.budgetType = ""
+      this.cardAccountNumber=""
+      this.modalContentType=""
+      this.quoteContent=""
     const elem = document.querySelector('.modal');
         let instance = M.Modal.getInstance(elem);
        return instance.close();
@@ -405,18 +426,18 @@ export default {
     }
   },
   mounted(){
-   
+  window.addEventListener("resize", ()=> this.onWidthChange)
  const elemM= document.querySelector('.modal');
  const instancesModal = M.Modal.init(elemM);
 
     return  instancesModal;
   },
+
   updated(){
-   // if(this.modalAction == "Budget"){
-  //    this.initSelect()
-    //}
-     const el=  document.querySelector('.hgi');
-console.log(el.value)
+      this.initSelect()
+  },
+  unmounted(){
+     return window.removeEventListener("resize", ()=> this.onWidthChange)
   }
 
 };

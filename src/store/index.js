@@ -21,18 +21,18 @@ setUser(state,payload ){
 state.userEmail = payload.email;
 state.userPassword = payload.password;
 state.userName = payload.name;
-window.localStorage.setItem("email", payload.email );
-window.localStorage.setItem("userName", payload.name)
+window.sessionStorage.setItem("email", payload.email );
+window.sessionStorage.setItem("userName", payload.name)
 },
 deleteUser(state){
   state.userEmail = "";
   state.userPassword = "";
   state.userName = "";
-  window.localStorage.removeItem("email");
-  window.localStorage.removeItem("userName");
+  window.sessionStorage.removeItem("email");
+  window.sessionStorage.removeItem("userName");
   },
 addCard(state,payload){
-  state.Card.push(payload)
+  state.Cards.push(payload)
 },
 addTransaction(state,payload){
   state.Transactions.push(payload)

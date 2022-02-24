@@ -1,11 +1,13 @@
 <template>
     <blockquote class="dashboard-blockquote mb-4" cite="Nigerians">
-            Try dey enjoy life.<br />
-            Problem no dey finish.
+            {{quote}}
           </blockquote>
 </template>
 <script>
 export default {
-    name:"Quotes"
+    name:"Quotes",
+      props:[
+     "quote"
+    ]
 }
 </script>
