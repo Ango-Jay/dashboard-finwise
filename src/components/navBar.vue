@@ -2,10 +2,26 @@
   <div>
     <nav>
       <div class="nav-wrapper dashboard-nav">
+      
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"
           ><i class="material-icons">menu</i></a
         >
-        <ul v-if="userLoggedIn" class="right show-on-medium-and-up hide-on-small-and-down">
+  <a v-if="userLoggedIn != true" href="#" class="brand-logo"> <img class="dash-logo" src="/img/logo.png" alt="logo" /><span>FinWise</span></a>
+        <ul v-if="userLoggedIn != true"  class="right show-on-large hide-on-med-and-down">
+       <li>
+        <a href="#"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a href="#">About</a>
+      </li>
+      <li>
+        <a href="#">Contact</a>
+      </li>
+      
+    </ul>
+        <ul v-if="userLoggedIn" class="right hide-on-med-and-down">
           <!-- <li class="ml-2">
             <div class="disp-flex align-items-center">
                  <span style=" background-color:#707070; border-radius:50%; display:flex; justify-items:center; align-items:center; margin:0 1rem; padding:.25rem">       <i style="color: #cc3507; line-height:28px; height:28px; width:28px; text-align:center" class="material-icons"
@@ -24,8 +40,8 @@
           </li> -->
           <!-- <li><button @click="logOutUser" class="waves-effect waves-light btn login-button ml-2" >Log out</button></li> -->
         </ul>
-         <div class="disp-flex align-items-center" style="height:100%">
-                <span  style="margin:0 auto 0 0; display: flex" class="hide-on-med-and-down">
+         <div v-if="userLoggedIn" class="disp-flex align-items-center" style="height:100%">
+                <span v-if="userLoggedIn"  style="margin:0 auto 0 0; display: flex" class="hide-on-med-and-down">
                   <img
                 v-lazyload
                 data-img-url="/img/profile.jpg"
@@ -35,7 +51,7 @@
               />
               <p  class="disp-flex m-none">{{userName}}</p>
               </span>
-              <span class=" disp-flex"  style="margin:0 0 0 auto">
+              <span v-if="userLoggedIn" class=" disp-flex"  style="margin:0 0 0 auto">
                  <span style=" background-color:#707070; border-radius:50%; display:flex; justify-items:center; align-items:center; margin:0 1rem; padding:.25rem">       <i style="color: #cc3507; line-height:28px; height:28px; width:28px; text-align:center" class="material-icons"
                 >notifications</i
               ></span>
@@ -103,66 +119,66 @@
         </form>
       </li>
       <li class="active-link">
-        <a href="sass.html"><i class="material-icons">home</i> Home</a>
+        <a href="#"><i class="material-icons">home</i> Home</a>
       </li>
 
       <li>
-        <a href="badges.html"
+        <a href="#"
           ><i class="material-icons">assignment</i> Budget</a
         >
       </li>
       <li>
-        <a href="collapsible.html"
+        <a href="#"
           ><i class="material-icons">send</i> Transactions</a
         >
       </li>
       <li>
-        <a href="mobile.html"
+        <a href="#"
           ><i class="material-icons">subscriptions</i> Subscriptions</a
         >
       </li>
       <li>
-        <a href="sass.html"><i class="material-icons">attach_money</i> Loans</a>
+        <a href="#"><i class="material-icons">attach_money</i> Loans</a>
       </li>
       <li>
-        <a href="sass.html"
+        <a href="#"
           ><i class="material-icons">multiline_chart</i> Reports</a
         >
       </li>
       <li>
-        <a href="sass.html"
+        <a href="#"
           ><i class="material-icons">attach_money</i> Savings</a
         >
       </li>
       <li>
-        <a href="sass.html"
+        <a href="#"
           ><i class="material-icons">monetization_on</i> Financial Advice</a
         >
       </li>
       <li>
-        <a href="sass.html"><i class="material-icons">person</i> Account</a>
+        <a href="#"><i class="material-icons">person</i> Account</a>
       </li>
       <li>
-        <a href="sass.html"><i class="material-icons">settings</i> Settings</a>
+        <a href="#"><i class="material-icons">settings</i> Settings</a>
       </li>
       <li style="display:flex"><button @click="logOutUser" class="waves-effect waves-light btn login-button" style="margin:2rem auto">Log out</button></li>
     </ul>
     <ul v-else class="sidenav dashboard-sidenav" id="mobile-demo">
       <li>
         <div class="mt-3">
-          <h4 class="center-align">FinWise</h4>
+          <h4 class="center-align disp-flex align-items-center justify-center"><img class="dash-logo" src="/img/logo.png" alt="logo" />FinWise</h4>
         </div>
       </li>
        <li>
-        <a href="sass.html"
+        <a href="#"
           >Home</a
         >
       </li>
       <li>
-        <a href="sass.html">About</a>
+        <a href="#">About</a>
       </li>
       <li>
-        <a href="sass.html">Contact</a>
+        <a href="#">Contact</a>
       </li>
       
     </ul>
