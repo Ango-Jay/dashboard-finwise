@@ -18,17 +18,28 @@ nav {
   margin-bottom: 2rem;
   a.brand-logo{
     align-items: center;
-      display: none;
+      display: flex;
+     justify-content: flex-end;
+    position: relative;
+    left: auto;
+    transform: translate(0px, 0px);
+    margin-right: 2rem;
+
      @include respond(tab-port){
-       display: flex;
+       margin: 0 0 0 2rem;
+   justify-content: flex-start;
+   position: absolute;
      }
   }
  
 }
- img.dash-logo{
+
+   img.dash-logo{
     width: 32px;
  
   }
+
+
 ul.dashboard-sidenav {
   background-color: #252525;
   color: #fff;
@@ -38,6 +49,7 @@ ul.dashboard-sidenav {
 
     i.material-icons{
       color: #fff !important;
+   
     }
   }
 }
@@ -46,6 +58,7 @@ ul.dashboard-sidenav {
 }
 .sidenav li > a > i.material-icons {
   color: #cc3507 !important;
+     margin: 0 0.5rem 0 0 !important;
 }
 #search {
   text-indent: 3rem;
@@ -61,7 +74,7 @@ form.dashboard-search {
 li a:hover {
   background-color: #cc3507 !important;
   color: #fff !important;
-  border-radius: 20px;
+  // border-radius: 20px;
 }
 .dashboard-dashboard{
   height: 100vh;
@@ -77,19 +90,22 @@ flex-direction: column;
 
 li{
 padding: .7rem 1rem;
-
-
 }
  li > a {
   color: #fff;
+  display: flex;
+  align-items: center;
   i.material-icons {
   color: #cc3507 ;
+  margin: 0 0.5rem 0 0;
 }
 }
-li a:hover {
-  background-color: #cc3507 !important;
-  color: #fff !important;
-  border-radius: 20px;
+li.nav-link:hover {
+  background-color: #cc3507 ;
+  color: #fff ;
+  *{
+    color: inherit !important;
+  }
 }
 
   }
@@ -235,15 +251,20 @@ a.addButton.btn-floating.btn-large{
 }
 /* login */
 .login-container{
-  width: 300px;
+  width: 270px;
   display: flex;
  margin: 2rem auto;
  background-color:#505050;
- padding-bottom: 2rem;
+ padding: 0 0 2rem 0;
  color:#fff;
  flex-direction: column;
  border: 3px solid #505050;
  border-radius: 20px;
+
+ @include respond(phone){
+   padding: 0 0 2rem 0;
+   width: 300px;
+ }
 }
 button.login-button{
   background-color: #cc3507;

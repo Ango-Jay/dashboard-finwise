@@ -22,23 +22,7 @@
       
     </ul>
         <ul v-if="userLoggedIn" class="right hide-on-med-and-down">
-          <!-- <li class="ml-2">
-            <div class="disp-flex align-items-center">
-                 <span style=" background-color:#707070; border-radius:50%; display:flex; justify-items:center; align-items:center; margin:0 1rem; padding:.25rem">       <i style="color: #cc3507; line-height:28px; height:28px; width:28px; text-align:center" class="material-icons"
-                >notifications</i
-              ></span>
-              <img
-                v-lazyload
-                data-img-url="/img/profile.jpg"
-                class="dashboard-profile-img disp-flex"
-                alt="profile"
-              />
-             
-           
-       
-            </div>
-          </li> -->
-          <!-- <li><button @click="logOutUser" class="waves-effect waves-light btn login-button ml-2" >Log out</button></li> -->
+   
         </ul>
          <div v-if="userLoggedIn" class="disp-flex align-items-center" style="height:100%">
                 <span v-if="userLoggedIn"  style="margin:0 auto 0 0; display: flex" class="hide-on-med-and-down">
@@ -73,31 +57,14 @@
 
 
     <ul v-if="userLoggedIn"  class="sidenav dashboard-sidenav" id="mobile-demo">
-      <li>
+      <li style="margin:0 0 3rem 0;">
         <div class="mt-3">
           <h4 class="center-align disp-flex align-items-center justify-center"><img class="dash-logo" src="/img/logo.png" alt="logo" /><span>FinWise</span></h4>
           
         </div>
       </li>
 
-      <!-- <li class="hide-on-med-and-up show-on-small">
-        <div class="disp-flex p-1">
-          <img
-            v-lazyload
-            data-img-url="/img/profile.jpg"
-            class="dashboard-profile-img"
-            alt="profile"
-          />
-          <div class="disp-flex justify-space-between">
-            <p class="disp-flex">{{userName}}</p>
-            <i
-              style="color: #cc3507; padding-left: 2rem; padding-top: 1.7rem"
-              class="material-icons disp-flex"
-              >notifications</i
-            >
-          </div>
-        </div>
-      </li> -->
+
 
       <li>
         <form class="dashboard-search">

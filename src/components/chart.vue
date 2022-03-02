@@ -19,7 +19,6 @@
 </template>
 
 <script>
-// import LineChart from "./lineChart"
 import { Chart, registerables } from "chart.js";
 export default {
   name: "Chart",
@@ -34,10 +33,10 @@ export default {
         const myChart = new Chart(ctx, {
           type: "line",
           data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            labels: ["Transactions", "Susriptions", "Loans", "Savings", "Budget", "Account"],
             datasets: [
               {
-                label: "# of Votes",
+                label: "financial growth",
                 data: [12, 19, 3, 5, 2, 3],
                 backgroundColor: [
                   "rgba(255, 99, 132, 0.2)",
@@ -77,39 +76,6 @@ export default {
     return this.createChart();
   },
 
-  // props:["chartData", "options"],
-  /* components:{
-  LineChart
-},
-
-data () {
-      return {
-        datacollection: null
-      }
-    },
-    mounted () {
-      this.fillData()
-    },
-    methods: {
-      fillData () {
-        this.datacollection = {
-          labels: [this.getRandomInt(), this.getRandomInt()],
-          datasets: [
-            {
-              label: 'Data One',
-              backgroundColor: '#f87979',
-              data: [this.getRandomInt(), this.getRandomInt()]
-            }, {
-              label: 'Data One',
-              backgroundColor: '#f87979',
-              data: [this.getRandomInt(), this.getRandomInt()]
-            }
-          ]
-        }
-      },
-      getRandomInt () {
-        return Math.floor(Math.random() * (50 - 5 + 1)) + 5
-      }
-    } */
+ 
 };
 </script>
