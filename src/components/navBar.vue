@@ -36,7 +36,7 @@
               <p  class="disp-flex m-none">{{userName}}</p>
               </span>
               <span v-if="userLoggedIn" class=" disp-flex"  style="margin:0 0 0 auto">
-                 <span style=" background-color:#707070; border-radius:50%; display:flex; justify-items:center; align-items:center; margin:0 1rem; padding:.25rem">       <i style="color: #cc3507; line-height:28px; height:28px; width:28px; text-align:center" class="material-icons"
+                 <span style=" background-color:#707070; border-radius:50%; display:flex; justify-items:center; align-items:center; margin:0 1rem; padding:.5rem">       <i style="color: #cc3507; line-height:28px; height:28px; width:28px; text-align:center" class="material-icons"
                 >notifications</i
               ></span>
                <img

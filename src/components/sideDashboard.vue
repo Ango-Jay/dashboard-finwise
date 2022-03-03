@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-dashboard">
     <ul class="dashboard-sidenav">
-        <li style="margin: 0 0 2rem 0;">
+        <li style="margin: 0 0 2rem 0; display:flex; justify-content:center;">
    
           <h5 class="center-align disp-flex align-items-center "><img class="dash-logo" src="/img/logo.png" alt="logo" /><span>FinWise</span></h5>
           
