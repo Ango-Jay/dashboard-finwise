@@ -9,7 +9,7 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-        © 2021 Copyright
+       &copy;{{getYear()}} Copyright
         <a class="grey-text text-lighten-4 right" href="#!">AngoJay</a>
       </div>
     </div>
@@ -18,5 +18,11 @@
 <script>
 export default {
   name: "Footer",
+  methods:{
+    getYear(){
+         const currentYear = new Date().getFullYear();
+    return currentYear;
+    }
+  }
 };
 </script>

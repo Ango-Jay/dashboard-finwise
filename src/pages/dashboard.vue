@@ -321,7 +321,7 @@ export default {
   },
   data(){
     return{
-      windowWidth: document.body.clientWidth,
+      windowWidth: /* document.body.clientWidth */ window.innerWidth,
      modalAction:"",
      modalContentName:"",
      modalContentAmount:0,

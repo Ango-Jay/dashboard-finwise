@@ -26,26 +26,30 @@
         </ul>
          <div v-if="userLoggedIn" class="disp-flex align-items-center" style="height:100%">
                 <span v-if="userLoggedIn"  style="margin:0 auto 0 0; display: flex" class="hide-on-med-and-down">
-                  <img
+           <!--        <img
                 v-lazyload
                 data-img-url="/img/profile.jpg"
                 class="dashboard-profile-img disp-flex"
                 alt="profile"
                
-              />
+              /> -->
+              <span style="text-align:center; background-color:#404040;  border-radius:50%; color:#cc3507;margin:auto 0.5rem; display:flex;justify-content:center;height:35px; align-items:center; width:35px">
+              <p  class="disp-flex m-none" style="line-height:normal; font-size:20px;">{{getUserSymbol()}}</p></span>
               <p  class="disp-flex m-none">{{userName}}</p>
               </span>
               <span v-if="userLoggedIn" class=" disp-flex"  style="margin:0 0 0 auto">
-                 <span style=" background-color:#707070; border-radius:50%; display:flex; justify-items:center; align-items:center; margin:0 1rem; padding:.5rem">       <i style="color: #cc3507; line-height:28px; height:28px; width:28px; text-align:center" class="material-icons"
+                 <span style=" background-color:#404040; border-radius:50%; display:flex; justify-content:center; align-items:center; margin:0 1rem; height:35px; width:35px; text-align:center">       <i style="color: #cc3507; line-height:normal; height:auto; width:auto; text-align:center" class="material-icons"
                 >notifications</i
               ></span>
-               <img
+          <!--      <img
                 v-lazyload
                 data-img-url="/img/profile.jpg"
                 class="dashboard-profile-img disp-flex hide-on-large-only"
                 alt="profile"
                style="margin:0 1rem 0 0"
-              />
+              /> -->
+              <span      class=" hide-on-large-only" style="text-align:center; background-color:#404040;  border-radius:50%; color:#fff;margin:auto 0.5rem; display:flex;justify-content:center;height:35px; align-items:center; width:35px">
+              <p  class="disp-flex m-none" style="line-height:normal; font-size:20px;">{{getUserSymbol()}}</p></span>
               </span>
             
               <!-- <p  class="disp-flex m-none">{{userName}}</p> -->
@@ -183,7 +187,12 @@ userLoggedIn(){
   methods:{
 ...mapActions([
   "logOutUser"
-])
+]),
+getUserSymbol(){
+ const nameArray =  this.userName.split("")
+ const userSymbol = nameArray[0].toUpperCase()
+ return userSymbol
+}
   }
 };
 </script>
